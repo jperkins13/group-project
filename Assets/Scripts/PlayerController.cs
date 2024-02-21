@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         {
             _animator.Play("Shuuto Fall");
         }
-        else if (_rb.velocity.y < 0.005)
+        else if (_rb.velocity.y > 0.005)
         {
             _animator.Play("Shuuto Jump");
         }

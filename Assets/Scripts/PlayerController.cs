@@ -34,7 +34,9 @@ public class PlayerController : MonoBehaviour
     PlayerInput _playerInput;
     InputAction _jumpAction;
     InputAction _moveAction;
+    InputAction _suckAction;
     float _horizontalMovement;
+    bool isInhaling = false;
 
     void Start()
     {
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _jumpAction = _playerInput.actions["Jump"];
         _moveAction = _playerInput.actions["Move"];
+        _suckAction = _playerInput.actions["Fire"];
 
         _animator = GetComponent<Animator>();
     }
@@ -61,6 +64,9 @@ public class PlayerController : MonoBehaviour
     {
         UpdateFlip();
 
+        if (isInhaling) {
+            return;
+        }
         if (_rb.velocity.y > 0.005)
         {
             _animator.Play("Shuuto Jump");
@@ -84,6 +90,17 @@ public class PlayerController : MonoBehaviour
     {
         //read move input
         _horizontalMovement = _moveAction.ReadValue<Vector2>().x * _moveSpeed;
+
+        if (_suckAction.WasPerformedThisFrame() && isOnGround()) {
+            _animator.Play("Shuuto Suck");
+            isInhaling = true;
+            _audioSource.PlayOneShot(_suckClip, 1f);
+        }
+
+        if(_suckAction.WasReleasedThisFrame()) {
+            isInhaling = false;
+            _animator.Play("Shuuto Idle");
+        }
         
         //jump check
         if (_jumpAction.WasPerformedThisFrame() && isOnGround())

@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask _groundLayer;
     public Collider2D _groundCollider;
 
+    [Header("Audio")]
+    public AudioClip _jumpClip;
+    public AudioClip _hurtClip;
+
+    AudioSource _audioSource;
+
     Rigidbody2D _rb;
 
     Animator _animator;
@@ -30,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
+        _audioSource = GetComponent<AudioSource>();
         _rb = GetComponent<Rigidbody2D>();
         _rb.gravityScale = _gravityScale;
 
@@ -79,6 +87,7 @@ public class PlayerController : MonoBehaviour
         if (_jumpAction.WasPerformedThisFrame() && isOnGround())
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpPower);
+            _audioSource.PlayOneShot(_jumpClip, 1f);
 
         }
         else if (_jumpAction.WasReleasedThisFrame())

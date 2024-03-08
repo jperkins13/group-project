@@ -62,7 +62,7 @@ public class enemyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-       if(other.gameObject.CompareTag("Player"))
+       if(other.gameObject.CompareTag("PlayerBullet"))
         {
             GameObject dead = Instantiate(deadEnemy, transform.position, Quaternion.identity);
             dead.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);

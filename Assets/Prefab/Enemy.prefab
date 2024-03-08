@@ -325,6 +325,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  deadEnemy: {fileID: 3715793747555575592, guid: 237bd25eb183b114a8edb05234e61e63, type: 3}
 --- !u!95 &8227382700323553279
 Animator:
   serializedVersion: 5

@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3376294307514445659}
   m_Layer: 0
   m_Name: Shuuto
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,4 +312,4 @@ MonoBehaviour:
   _jumpClip: {fileID: 8300000, guid: 67084573a1c564e9187a52662b7fadd7, type: 3}
   _hurtClip: {fileID: 8300000, guid: ee97781e3778e4e60a8c2c6f4dc0fdb4, type: 3}
   _suckClip: {fileID: 8300000, guid: bcd021afd16a4463182ed177ee4c890f, type: 3}
-  _spitClip: {fileID: 0}
+  _spitClip: {fileID: 8300000, guid: 320bd6e7b870c4275ac7dc598bfea2cd, type: 3}

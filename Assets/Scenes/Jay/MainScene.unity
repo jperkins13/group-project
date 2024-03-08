@@ -1767,9 +1767,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3376294307514445659, guid: 61791f8c66f8cb24ab85653342dc31ff, type: 3}
+      propertyPath: _hurtClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ee97781e3778e4e60a8c2c6f4dc0fdb4, type: 3}
+    - target: {fileID: 3376294307514445659, guid: 61791f8c66f8cb24ab85653342dc31ff, type: 3}
       propertyPath: _jumpClip
       value: 
       objectReference: {fileID: 8300000, guid: 67084573a1c564e9187a52662b7fadd7, type: 3}
+    - target: {fileID: 3376294307514445659, guid: 61791f8c66f8cb24ab85653342dc31ff, type: 3}
+      propertyPath: _spitClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 320bd6e7b870c4275ac7dc598bfea2cd, type: 3}
+    - target: {fileID: 3376294307514445659, guid: 61791f8c66f8cb24ab85653342dc31ff, type: 3}
+      propertyPath: _suckClip
+      value: 
+      objectReference: {fileID: 8300000, guid: bcd021afd16a4463182ed177ee4c890f, type: 3}
     - target: {fileID: 4405864550987562813, guid: 61791f8c66f8cb24ab85653342dc31ff, type: 3}
       propertyPath: m_Name
       value: Shuuto

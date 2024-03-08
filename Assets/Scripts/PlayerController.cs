@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     [Header("Audio")]
     public AudioClip _jumpClip;
     public AudioClip _hurtClip;
+    public AudioClip _suckClip;
+    public AudioClip _spitClip;
 
     AudioSource _audioSource;
 

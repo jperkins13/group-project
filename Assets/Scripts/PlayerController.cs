@@ -19,6 +19,14 @@ public class PlayerController : MonoBehaviour
     public LayerMask _groundLayer;
     public Collider2D _groundCollider;
 
+    [Header("Audio")]
+    public AudioClip _jumpClip;
+    public AudioClip _hurtClip;
+    public AudioClip _suckClip;
+    public AudioClip _spitClip;
+
+    AudioSource _audioSource;
+
     Rigidbody2D _rb;
 
     Animator _animator;
@@ -26,16 +34,21 @@ public class PlayerController : MonoBehaviour
     PlayerInput _playerInput;
     InputAction _jumpAction;
     InputAction _moveAction;
+    InputAction _suckAction;
     float _horizontalMovement;
+    bool isInhaling = false;
 
     void Start()
     {
+
+        _audioSource = GetComponent<AudioSource>();
         _rb = GetComponent<Rigidbody2D>();
         _rb.gravityScale = _gravityScale;
 
         _playerInput = GetComponent<PlayerInput>();
         _jumpAction = _playerInput.actions["Jump"];
         _moveAction = _playerInput.actions["Move"];
+        _suckAction = _playerInput.actions["Fire"];
 
         _animator = GetComponent<Animator>();
     }
@@ -51,6 +64,9 @@ public class PlayerController : MonoBehaviour
     {
         UpdateFlip();
 
+        if (isInhaling) {
+            return;
+        }
         if (_rb.velocity.y > 0.005)
         {
             _animator.Play("Shuuto Jump");
@@ -74,11 +90,23 @@ public class PlayerController : MonoBehaviour
     {
         //read move input
         _horizontalMovement = _moveAction.ReadValue<Vector2>().x * _moveSpeed;
+
+        if (_suckAction.WasPerformedThisFrame() && isOnGround()) {
+            _animator.Play("Shuuto Suck");
+            isInhaling = true;
+            _audioSource.PlayOneShot(_suckClip, 1f);
+        }
+
+        if(_suckAction.WasReleasedThisFrame()) {
+            isInhaling = false;
+            _animator.Play("Shuuto Idle");
+        }
         
         //jump check
         if (_jumpAction.WasPerformedThisFrame() && isOnGround())
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpPower);
+            _audioSource.PlayOneShot(_jumpClip, 1f);
 
         }
         else if (_jumpAction.WasReleasedThisFrame())

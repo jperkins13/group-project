@@ -12,6 +12,7 @@ public class enemyController : MonoBehaviour
     public Collider2D cliffCheck;
     public Collider2D wallCheck;
     public LayerMask groundMask;
+    public GameObject deadEnemy;
 
     void Start()
     {
@@ -57,5 +58,16 @@ public class enemyController : MonoBehaviour
         bool check = Physics2D.OverlapBox(wallCheck.bounds.center, wallCheck.bounds.size, 0f, groundMask);
 
         return check;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+       if(other.gameObject.CompareTag("PlayerBullet"))
+        {
+            GameObject dead = Instantiate(deadEnemy, transform.position, Quaternion.identity);
+            dead.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
+            Destroy(gameObject);
+        }
+        
     }
 }
